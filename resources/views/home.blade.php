@@ -1,7 +1,9 @@
-@extends('layouts.app') @section('content')
+@extends('layouts.app') 
+
+@section('content')
 <div class="container">
 	<div class="row">
-		<div class="col-md-10 col-md-offset-1">
+		<div class="col-md-10 mx-auto">
 			<panel-component
                 title="Dashboard"
                 color="dark">
@@ -18,7 +20,7 @@
                         <card-info-component 
                             title="Posts"
                             color="info"
-                            url="/home"
+                            url="{{route('articles.index')}}"
                             icon="ion ion-ios-folder">
 						</card-info-component>
 					</div>
