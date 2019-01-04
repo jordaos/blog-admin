@@ -1,6 +1,6 @@
 <template>
 <div class="card card-default" v-bind:class="defineBorderColor">
-    <div class="card-header" v-bind:class="defineColor">{{ title }}</div>
+    <div class="card-header" v-bind:class="defineBgAndColor">{{ title }}</div>
 
     <div class="card-body">
         <slot></slot>
@@ -10,14 +10,14 @@
 
 <script>
 export default {
-    props: ["title", "color"],
+    props: ["title", "color", "url"],
     computed: {
-        defineColor: function() {
+        defineBgAndColor: function () {
             let bg = "bg-" + (this.color || "light");
             let text = "text-" + ((!this.color || this.color == "light") ? "dark" : "light");
             return bg + " " + text;
         },
-        defineBorderColor: function() {
+        defineBorderColor: function () {
             return "border-" + (this.color || "light");
         }
     }

@@ -5,28 +5,30 @@
 			<panel-component
                 title="Dashboard"
                 color="dark">
-				Teste de conteúdo..
 				<div class="row">
 					<div class="col-md-4">
-                        <panel-component 
-                            title="Conteúdo 1"
-                            color="danger">
-							Teste de conteúdo..
-						</panel-component>
+                        <card-info-component 
+                            title="Usuários"
+                            color="danger"
+                            url="/home"
+                            icon="ion ion-person-stalker">
+						</card-info-component>
 					</div>
 					<div class="col-md-4">
-                        <panel-component 
-                            title="Conteúdo 2"
-                            color="info">
-							Teste de conteúdo..
-						</panel-component>
+                        <card-info-component 
+                            title="Posts"
+                            color="info"
+                            url="/home"
+                            icon="ion ion-ios-folder">
+						</card-info-component>
 					</div>
 					<div class="col-md-4">
-                        <panel-component
-                            title="Conteúdo 3"
-                            color="success">
-							Teste de conteúdo..
-						</panel-component>
+                        <card-info-component
+                            title="Acessos"
+                            color="success"
+                            url="/home"
+                            icon="ion ion-pie-graph">
+						</card-info-component>
 					</div>
 				</div>
 			</panel-component>
