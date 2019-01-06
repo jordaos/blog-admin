@@ -14,7 +14,20 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        return view('admin.articles.index');
+        $breadcrumbList = json_encode([
+            [
+                "text" => "Home",
+                "href" => route('home')
+            ],
+            [
+                "text" => "Lista de Artigos",
+                "active" => true
+            ]
+        ]);
+        return view(
+            'admin.articles.index',
+            compact('breadcrumbList')
+        );
     }
 
     /**

@@ -4,6 +4,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-10 mx-auto">
+            <b-breadcrumb :items="{{$breadcrumbList}}"></b-breadcrumb>
 			<panel-component
                 title="Dashboard"
                 color="dark">

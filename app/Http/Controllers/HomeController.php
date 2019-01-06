@@ -23,6 +23,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $breadcrumbList = json_encode([
+            [
+                "text" => "Home",
+                "active" => true
+            ]
+        ]);
+        return view(
+            'home',
+            compact('breadcrumbList')
+        );
     }
 }
