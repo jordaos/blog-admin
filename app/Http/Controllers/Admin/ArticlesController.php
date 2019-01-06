@@ -20,7 +20,7 @@ class ArticlesController extends Controller
                 "href" => route('home')
             ],
             [
-                "text" => "Lista de Artigos",
+                "text" => "Artigos",
                 "active" => true
             ]
         ]);
@@ -37,7 +37,24 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        //
+        $breadcrumbList = json_encode([
+            [
+                "text" => "Home",
+                "href" => route('home')
+            ],
+            [
+                "text" => "Artigos",
+                "href" => route('articles.index')
+            ],
+            [
+                "text" => "Novo",
+                "active" => true
+            ]
+        ]);
+        return view(
+            'admin.articles.create',
+            compact('breadcrumbList')
+        );
     }
 
     /**
