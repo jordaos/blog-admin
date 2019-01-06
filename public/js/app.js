@@ -1882,14 +1882,61 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['titles', 'items', 'url', 'token'],
+  data: function data() {
+    return {
+      element: null,
+      search: ''
+    };
+  },
   computed: {
     createUrl: function createUrl() {
       return this.url + "/create";
     },
     editUrl: function editUrl() {
       return this.url + "/edit";
+    },
+    elementList: function elementList() {
+      var _this = this;
+
+      return this.items.filter(function (item) {
+        for (var key in item) {
+          if (item[key].toString().toLowerCase().indexOf(_this.search.toLowerCase()) >= 0) return true;
+        }
+
+        return false;
+      });
+    }
+  },
+  methods: {
+    deleteElement: function deleteElement(el) {
+      this.element = el;
+    },
+    handleOk: function handleOk() {
+      /**
+       * TODO
+       * Chamar requisição para deletar (this.element.id)
+       */
+      console.log(this.element.id);
+      this.element = null;
     }
   }
 });
@@ -55114,78 +55161,144 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm.url
-      ? _c(
-          "a",
-          { staticClass: "btn btn-success", attrs: { href: _vm.createUrl } },
-          [_c("i", { staticClass: "fa fa-plus" }), _vm._v(" Criar")]
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    _c("table", { staticClass: "table table-hover table-striped" }, [
-      _c("thead", [
-        _c(
-          "tr",
-          [
-            _vm._l(_vm.titles, function(title, index) {
-              return _c("th", { key: index, attrs: { scope: "col" } }, [
-                _vm._v(_vm._s(title))
-              ])
-            }),
-            _vm._v(" "),
-            _vm.url
-              ? _c("th", { attrs: { scope: "col" } }, [_vm._v("Ações")])
-              : _vm._e()
-          ],
-          2
-        )
+  return _c(
+    "div",
+    [
+      _c("div", { staticClass: "form-inline mb-2" }, [
+        _vm.url
+          ? _c(
+              "a",
+              {
+                staticClass: "btn btn-success",
+                attrs: { href: _vm.createUrl }
+              },
+              [_c("i", { staticClass: "fa fa-plus" }), _vm._v(" Criar")]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "input-group ml-auto" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.search,
+                expression: "search"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "search", placeholder: "Buscar..." },
+            domProps: { value: _vm.search },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.search = $event.target.value
+              }
+            }
+          })
+        ])
       ]),
       _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.items, function(item, index) {
-          return _c(
+      _c("table", { staticClass: "table table-hover table-striped" }, [
+        _c("thead", [
+          _c(
             "tr",
-            { key: index },
             [
-              _vm._l(item, function(i, key) {
-                return _c("td", { key: key }, [_vm._v(_vm._s(i))])
+              _vm._l(_vm.titles, function(title, index) {
+                return _c(
+                  "th",
+                  {
+                    key: index,
+                    staticClass: "text-capitalize",
+                    attrs: { scope: "col" }
+                  },
+                  [_vm._v(_vm._s(title))]
+                )
               }),
               _vm._v(" "),
               _vm.url
-                ? _c("td", [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-link text-info",
-                        attrs: { href: _vm.editUrl }
-                      },
-                      [_c("i", { staticClass: "fa fa-pencil" })]
-                    ),
-                    _vm._v(" "),
-                    _vm._m(0, true)
-                  ])
+                ? _c("th", { attrs: { scope: "col" } }, [_vm._v("Ações")])
                 : _vm._e()
             ],
             2
           )
-        }),
-        0
+        ]),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.elementList, function(item, index) {
+            return _c(
+              "tr",
+              { key: index },
+              [
+                _vm._l(item, function(i, key) {
+                  return _c("td", { key: key }, [_vm._v(_vm._s(i))])
+                }),
+                _vm._v(" "),
+                _vm.url
+                  ? _c(
+                      "td",
+                      [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-outline-info",
+                            attrs: { href: _vm.editUrl }
+                          },
+                          [_c("i", { staticClass: "fa fa-pencil" })]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-btn",
+                          {
+                            directives: [
+                              {
+                                name: "b-modal",
+                                rawName: "v-b-modal.modal1",
+                                modifiers: { modal1: true }
+                              }
+                            ],
+                            attrs: { variant: "outline-danger" },
+                            on: {
+                              click: function($event) {
+                                _vm.deleteElement(item)
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fa fa-trash" })]
+                        )
+                      ],
+                      1
+                    )
+                  : _vm._e()
+              ],
+              2
+            )
+          }),
+          0
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: {
+            id: "modal1",
+            title: "Alerta",
+            "cancel-title": "Não",
+            "ok-title": "Sim"
+          },
+          on: { ok: _vm.handleOk }
+        },
+        [_vm._v("\r\n        Deseja mesmo apagar este elemento?\r\n    ")]
       )
-    ])
-  ])
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("button", { staticClass: "btn btn-link text-danger" }, [
-      _c("i", { staticClass: "fa fa-trash" })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

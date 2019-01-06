@@ -4,10 +4,9 @@
 		<div class="col-md-10 mx-auto">
 			<panel-component title="Lista de artigos" color="dark">
                 <table-page
-                    v-bind:titles="['id','titulo']"
-                    v-bind:items="[['1', 'Teste 01'], ['2', 'Teste 02']]"
-                    url="{{route('articles.index')}}"
-                    token=""></table-page>
+                    v-bind:titles="['id','título']"
+                    v-bind:items="[{'id': 1, 'title': 'Teste 01'}, {'id': 2, 'title': 'Teste 02'}]"
+                    url="{{route('articles.index')}}"></table-page>
 			</panel-component>
 		</div>
 	</div>
