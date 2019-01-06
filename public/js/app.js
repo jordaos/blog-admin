@@ -66961,7 +66961,10 @@ files.keys().map(function (key) {
  */
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  mounted: function mounted() {
+    document.getElementById("app").style.display = "block";
+  }
 });
 
 /***/ }),
