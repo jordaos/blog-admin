@@ -1934,6 +1934,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["titles", "items", "url", "token"],
   data: function data() {
@@ -1981,6 +1990,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     deleteElement: function deleteElement(el) {
+      this.element = el;
+    },
+    detailsElement: function detailsElement(el) {
       this.element = el;
     },
     handleOk: function handleOk() {
@@ -55429,6 +55441,26 @@ var render = function() {
                       "td",
                       [
                         _c(
+                          "b-btn",
+                          {
+                            directives: [
+                              {
+                                name: "b-modal",
+                                rawName: "v-b-modal.detailsModal",
+                                modifiers: { detailsModal: true }
+                              }
+                            ],
+                            attrs: { variant: "outline-success" },
+                            on: {
+                              click: function($event) {
+                                _vm.detailsElement(item)
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fa fa-eye" })]
+                        ),
+                        _vm._v(" "),
+                        _c(
                           "a",
                           {
                             staticClass: "btn btn-outline-info",
@@ -55443,8 +55475,8 @@ var render = function() {
                             directives: [
                               {
                                 name: "b-modal",
-                                rawName: "v-b-modal.modal1",
-                                modifiers: { modal1: true }
+                                rawName: "v-b-modal.deleteModal",
+                                modifiers: { deleteModal: true }
                               }
                             ],
                             attrs: { variant: "outline-danger" },
@@ -55472,7 +55504,7 @@ var render = function() {
         "b-modal",
         {
           attrs: {
-            id: "modal1",
+            id: "deleteModal",
             title: "Alerta",
             "cancel-title": "Não",
             "ok-title": "Sim"
@@ -55480,6 +55512,27 @@ var render = function() {
           on: { ok: _vm.handleOk }
         },
         [_vm._v("\r\n        Deseja mesmo apagar este elemento?\r\n    ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: {
+            id: "detailsModal",
+            title: "Detalhes",
+            "cancel-title": "Fechar"
+          },
+          on: { ok: _vm.handleOk }
+        },
+        _vm._l(_vm.element, function(val, key) {
+          return _c("div", { key: key }, [
+            _c("span", { staticClass: "text-capitalize" }, [
+              _vm._v(_vm._s(key) + ": "),
+              _c("b", [_vm._v(_vm._s(val))])
+            ])
+          ])
+        }),
+        0
       )
     ],
     1

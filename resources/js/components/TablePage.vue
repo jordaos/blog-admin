@@ -21,10 +21,13 @@
             <tr v-for="(item, index) in elementList" :key="index">
                 <td v-for="(i, key) in item" :key="key">{{i}}</td>
                 <td v-if="url">
+                    <b-btn variant="outline-success" v-b-modal.detailsModal @click="detailsElement(item)">
+                        <i class="fa fa-eye"></i>
+                    </b-btn>
                     <a v-bind:href="editUrl" class="btn btn-outline-info">
-                    <i class="fa fa-pencil"></i>
-                </a>
-                    <b-btn variant="outline-danger" v-b-modal.modal1 @click="deleteElement(item)">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                    <b-btn variant="outline-danger" v-b-modal.deleteModal @click="deleteElement(item)">
                         <i class="fa fa-trash"></i>
                     </b-btn>
                 </td>
@@ -32,8 +35,14 @@
         </tbody>
     </table>
 
-    <b-modal id="modal1" title="Alerta" @ok="handleOk" cancel-title="Não" ok-title="Sim">
+    <b-modal id="deleteModal" title="Alerta" @ok="handleOk" cancel-title="Não" ok-title="Sim">
         Deseja mesmo apagar este elemento?
+    </b-modal>
+
+    <b-modal id="detailsModal" title="Detalhes" @ok="handleOk" cancel-title="Fechar">
+        <div v-for="(val, key) in element" :key="key">
+            <span class="text-capitalize">{{key}}: <b>{{val}}</b></span>
+        </div>
     </b-modal>
 </div>
 </template>
@@ -92,6 +101,9 @@ export default {
     },
     methods: {
         deleteElement(el) {
+            this.element = el;
+        },
+        detailsElement(el) {
             this.element = el;
         },
         handleOk() {
