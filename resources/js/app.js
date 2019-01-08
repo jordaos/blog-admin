@@ -6,12 +6,14 @@
  */
 
 import BootstrapVue from 'bootstrap-vue'
+import Datetime from 'vue-datetime'
 
 require('./bootstrap');
 
 window.Vue = require('vue');
 
 Vue.use(BootstrapVue);
+Vue.use(Datetime);
 
 /**
  * The following block of code may be used to automatically register your

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Article;
+
 class ArticlesController extends Controller
 {
     /**
@@ -24,6 +26,7 @@ class ArticlesController extends Controller
                 "active" => true
             ]
         ]);
+
         return view(
             'admin.articles.index',
             compact('breadcrumbList')
@@ -65,7 +68,10 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        Article::create($data);
+
+        return redirect()->back();
     }
 
     /**
