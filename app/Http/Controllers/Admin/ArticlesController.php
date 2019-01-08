@@ -27,9 +27,11 @@ class ArticlesController extends Controller
             ]
         ]);
 
+        $articleList = json_encode(Article::select('id', 'title', 'description', 'publish')->get());
+
         return view(
             'admin.articles.index',
-            compact('breadcrumbList')
+            compact('breadcrumbList', 'articleList')
         );
     }
 

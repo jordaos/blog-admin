@@ -2,11 +2,11 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-10 mx-auto">
-			<b-breadcrumb :items="{{$breadcrumbList}}"></b-breadcrumb>
+			<b-breadcrumb :items="{{ $breadcrumbList }}"></b-breadcrumb>
 			<panel-component title="Lista de artigos" color="dark">
                 <table-page
-                    v-bind:titles="['id','título']"
-                    v-bind:items="[{'id': 1, 'title': 'Teste 01'}, {'id': 2, 'title': 'Teste 02'}]"
+                    v-bind:titles="['#','título', 'Descrição', 'Data de publicação']"
+                    v-bind:items="{{ $articleList }}"
                     url="{{route('articles.index')}}"></table-page>
 			</panel-component>
 		</div>
