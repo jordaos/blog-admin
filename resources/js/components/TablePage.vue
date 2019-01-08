@@ -41,7 +41,7 @@
 
     <b-modal id="detailsModal" title="Detalhes" @ok="handleOk" cancel-title="Fechar">
         <div v-for="(val, key) in element" :key="key">
-            <span class="text-capitalize">{{key}}: <b>{{val}}</b></span>
+            <span class="text-capitalize">{{ titles[getIndexByKey(key)] }}: <b>{{val}}</b></span>
         </div>
     </b-modal>
 </div>
@@ -122,9 +122,19 @@ export default {
             }
             return "id";
         },
+        getIndexByKey(key) {
+            let i = 0;
+            for (let val in this.items[0]) {
+                if (val == key) return i;
+                i++;
+            }
+            return -1;
+        },
         orderColumn(column) {
             if (column == this.column)
                 this.order = this.order == "asc" ? "desc" : "asc";
+            else if (this.order == "desc")
+                this.order = "asc"
             this.column = column;
         },
         iconOrder(index) {

@@ -73,7 +73,7 @@ class ArticlesController extends Controller
         $data = $request->all();
         Article::create($data);
 
-        return redirect()->back();
+        return redirect()->route('articles.index');
     }
 
     /**

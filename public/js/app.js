@@ -2013,8 +2013,18 @@ __webpack_require__.r(__webpack_exports__);
 
       return "id";
     },
+    getIndexByKey: function getIndexByKey(key) {
+      var i = 0;
+
+      for (var val in this.items[0]) {
+        if (val == key) return i;
+        i++;
+      }
+
+      return -1;
+    },
     orderColumn: function orderColumn(column) {
-      if (column == this.column) this.order = this.order == "asc" ? "desc" : "asc";
+      if (column == this.column) this.order = this.order == "asc" ? "desc" : "asc";else if (this.order == "desc") this.order = "asc";
       this.column = column;
     },
     iconOrder: function iconOrder(index) {
@@ -64004,7 +64014,7 @@ var render = function() {
         _vm._l(_vm.element, function(val, key) {
           return _c("div", { key: key }, [
             _c("span", { staticClass: "text-capitalize" }, [
-              _vm._v(_vm._s(key) + ": "),
+              _vm._v(_vm._s(_vm.titles[_vm.getIndexByKey(key)]) + ": "),
               _c("b", [_vm._v(_vm._s(val))])
             ])
           ])
