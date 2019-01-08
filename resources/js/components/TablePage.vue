@@ -24,7 +24,7 @@
                     <b-btn variant="outline-success" v-b-modal.detailsModal @click="detailsElement(item)">
                         <i class="fa fa-eye"></i>
                     </b-btn>
-                    <a v-bind:href="editUrl" class="btn btn-outline-info">
+                    <a v-bind:href="editUrl(item.id)" class="btn btn-outline-info">
                         <i class="fa fa-pencil"></i>
                     </a>
                     <b-btn variant="outline-danger" v-b-modal.deleteModal @click="deleteElement(item)">
@@ -61,9 +61,6 @@ export default {
     computed: {
         createUrl: function () {
             return this.url + "/create";
-        },
-        editUrl: function () {
-            return this.url + "/edit";
         },
         elementList: function () {
             this.order.toLowerCase();
@@ -143,7 +140,10 @@ export default {
                     "fa-sort-amount-asc" :
                     "fa-sort-amount-desc";
             return "fa-sort";
-        }
+        },
+        editUrl(id) {
+            return this.url + "/" + id + "/edit";
+        },
     }
 };
 </script>

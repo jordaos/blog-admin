@@ -71,6 +71,17 @@ class ArticlesController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+
+        $validation = \Validator::make($data, [
+            'title' => 'required',
+            'description' => 'required',
+            'publish' => 'required',
+        ]);
+
+        if ($validation->fails()) {
+            return redirect()->back()->withErrors($validation)->withInput();
+        }
+        
         Article::create($data);
 
         return redirect()->route('articles.index');
@@ -95,7 +106,26 @@ class ArticlesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article = Article::find($id);
+
+        $breadcrumbList = json_encode([
+            [
+                "text" => "Home",
+                "href" => route('home')
+            ],
+            [
+                "text" => "Artigos",
+                "href" => route('articles.index')
+            ],
+            [
+                "text" => "Editar",
+                "active" => true
+            ]
+        ]);
+        return view(
+            'admin.articles.create',
+            compact('breadcrumbList', 'article')
+        );
     }
 
     /**

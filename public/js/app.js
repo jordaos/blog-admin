@@ -1957,9 +1957,6 @@ __webpack_require__.r(__webpack_exports__);
     createUrl: function createUrl() {
       return this.url + "/create";
     },
-    editUrl: function editUrl() {
-      return this.url + "/edit";
-    },
     elementList: function elementList() {
       var _this = this;
 
@@ -2030,6 +2027,9 @@ __webpack_require__.r(__webpack_exports__);
     iconOrder: function iconOrder(index) {
       if (index == this.column) return this.order == "asc" ? "fa-sort-amount-asc" : "fa-sort-amount-desc";
       return "fa-sort";
+    },
+    editUrl: function editUrl(id) {
+      return this.url + "/" + id + "/edit";
     }
   }
 });
@@ -63951,7 +63951,7 @@ var render = function() {
                           "a",
                           {
                             staticClass: "btn btn-outline-info",
-                            attrs: { href: _vm.editUrl }
+                            attrs: { href: _vm.editUrl(item.id) }
                           },
                           [_c("i", { staticClass: "fa fa-pencil" })]
                         ),
