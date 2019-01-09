@@ -1950,7 +1950,8 @@ __webpack_require__.r(__webpack_exports__);
       element: null,
       search: "",
       order: "asc",
-      column: 0
+      column: 0,
+      listItems: []
     };
   },
   computed: {
@@ -1965,18 +1966,18 @@ __webpack_require__.r(__webpack_exports__);
       var columnKey = this.getKeyByIndex(this.column);
 
       if (this.order == "asc") {
-        this.items.sort(function (el1, el2) {
+        this.listItems.sort(function (el1, el2) {
           if (el1[columnKey] > el2[columnKey]) return 1;else if (el1[columnKey] < el2[columnKey]) return -1;
           return 0;
         });
       } else {
-        this.items.sort(function (el1, el2) {
+        this.listItems.sort(function (el1, el2) {
           if (el1[columnKey] < el2[columnKey]) return 1;else if (el1[columnKey] > el2[columnKey]) return -1;
           return 0;
         });
       }
 
-      return this.items.filter(function (item) {
+      return this.listItems.filter(function (item) {
         for (var key in item) {
           if (item[key].toString().toLowerCase().indexOf(_this.search.toLowerCase()) >= 0) return true;
         }
@@ -1993,17 +1994,29 @@ __webpack_require__.r(__webpack_exports__);
       this.element = el;
     },
     handleOk: function handleOk() {
-      /**
-       * TODO
-       * Chamar requisição para deletar (this.element.id)
-       */
-      console.log(this.element.id);
-      this.element = null;
+      var _this2 = this;
+
+      axios.delete(this.deleteUrl(this.element.id), {
+        data: {
+          _token: this.token
+        }
+      }).then(function (res) {
+        var index = _this2.listItems.map(function (x) {
+          return x.id;
+        }).indexOf(_this2.element.id);
+
+        _this2.listItems.splice(index, 1);
+
+        _this2.element = null;
+      }).catch(function (error) {
+        console.log(error);
+        this.element = null;
+      });
     },
     getKeyByIndex: function getKeyByIndex(index) {
       var i = 0;
 
-      for (var val in this.items[0]) {
+      for (var val in this.listItems[0]) {
         if (index == i) return val;
         i++;
       }
@@ -2013,7 +2026,7 @@ __webpack_require__.r(__webpack_exports__);
     getIndexByKey: function getIndexByKey(key) {
       var i = 0;
 
-      for (var val in this.items[0]) {
+      for (var val in this.listItems[0]) {
         if (val == key) return i;
         i++;
       }
@@ -2030,7 +2043,13 @@ __webpack_require__.r(__webpack_exports__);
     },
     editUrl: function editUrl(id) {
       return this.url + "/" + id + "/edit";
+    },
+    deleteUrl: function deleteUrl(id) {
+      return this.url + "/" + id;
     }
+  },
+  mounted: function mounted() {
+    this.listItems = this.items;
   }
 });
 
@@ -63891,9 +63910,9 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\r\n                    " +
+                      "\r\n                        " +
                         _vm._s(title) +
-                        "\r\n                    "
+                        "\r\n                        "
                     ),
                     _c("i", {
                       staticClass: "fa",
@@ -63998,7 +64017,11 @@ var render = function() {
           },
           on: { ok: _vm.handleOk }
         },
-        [_vm._v("\r\n        Deseja mesmo apagar este elemento?\r\n    ")]
+        [
+          _vm._v(
+            "\r\n            Deseja mesmo apagar este elemento?\r\n        "
+          )
+        ]
       ),
       _vm._v(" "),
       _c(
@@ -64008,8 +64031,7 @@ var render = function() {
             id: "detailsModal",
             title: "Detalhes",
             "cancel-title": "Fechar"
-          },
-          on: { ok: _vm.handleOk }
+          }
         },
         _vm._l(_vm.element, function(val, key) {
           return _c("div", { key: key }, [

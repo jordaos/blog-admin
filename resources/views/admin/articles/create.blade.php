@@ -8,19 +8,21 @@
 					<div class="form-group">
 						<label for="titleInput">Título</label>
 						<input type="text" name="title" class="form-control" id="titleInput" value="{{ old('title', (!empty($article) ? $article->title : '')) }}"
-						 placeholder="Digite o título da publicação"> @if ($errors->has('title'))
+						 placeholder="Digite o título da publicação">
+						@if ($errors->has('title'))
 						<label for="titleInput" class="form-text small text-danger">{{$errors->first('title')}}</label>
 						@endif
 					</div>
 					<div class="form-group">
 						<label for="descriptionTextarea">Descrição</label>
-						<textarea name="description" class="form-control" id="descriptionTextarea" rows="3" placeholder="Descrição...">{{ old('description', (!empty($article) ? $article->description : '')) }}</textarea> @if ($errors->has('description'))
+						<textarea name="description" class="form-control" id="descriptionTextarea" rows="3" placeholder="Descrição...">{{ old('description', (!empty($article) ? $article->description : '')) }}</textarea> 
+						@if ($errors->has('description'))
 						<label for="descriptionTextarea" class="form-text small text-danger">{{$errors->first('description')}}</label>
 						@endif
 					</div>
 					<div class="form-group">
 						<label for="dateInput">Data</label>
-						<datetime name="publish" type="datetime" id="dateInput" input-class="form-control" format="yyyy-MM-dd HH:mm" min-datetime="{{ date('Y-m-d H:i:s') }}"></datetime>
+						<datetime name="publish" type="datetime" input-id="dateInput" input-class="form-control" format="yyyy-MM-dd HH:mm" min-datetime="{{ date('Y-m-d H:i:s') }}"></datetime>
 						@if ($errors->has('publish'))
 						<label for="dateInput" class="form-text small text-danger">{{$errors->first('publish')}}</label>
 						@endif
