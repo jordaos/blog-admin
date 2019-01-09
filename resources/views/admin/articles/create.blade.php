@@ -4,7 +4,7 @@
 		<div class="col-md-10 mx-auto">
 			<b-breadcrumb :items="{{$breadcrumbList}}"></b-breadcrumb>
 			<panel-component title="Novo artigo" color="dark">
-				<form-component method="POST" action="{{route('articles.store')}}" token="{{ csrf_token() }}">
+				<form-component method="{{empty($article) ? 'POST' : 'PUT'}}" action="{{empty($article) ? route('articles.store') : route('articles.update', $article->id) }}" token="{{ csrf_token() }}">
 					<div class="form-group">
 						<label for="titleInput">Título</label>
 						<input type="text" name="title" class="form-control" id="titleInput" value="{{ old('title', (!empty($article) ? $article->title : '')) }}"
