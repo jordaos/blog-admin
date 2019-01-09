@@ -19,7 +19,7 @@
             </thead>
             <tbody>
                 <tr v-for="(item, index) in elementList" :key="index">
-                    <td v-for="(i, key) in item" :key="key">{{i}}</td>
+                    <td v-for="(i, key) in item" :key="key">{{ i }}</td>
                     <td v-if="url">
                         <b-btn variant="outline-success" v-b-modal.detailsModal @click="detailsElement(item)">
                             <i class="fa fa-eye"></i>
@@ -156,7 +156,7 @@ export default {
             return this.url + "/" + id;
         },
     },
-    mounted() {
+    beforeMount() {
         this.listItems = this.items;
     }
 };

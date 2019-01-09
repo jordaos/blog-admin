@@ -13,14 +13,16 @@
                         <card-info-component 
                             title="Usuários"
                             color="danger"
+                            count="10"
                             url="/home"
                             icon="ion ion-person-stalker">
 						</card-info-component>
 					</div>
 					<div class="col-md-4">
                         <card-info-component 
-                            title="Posts"
+                            title="Artigos"
                             color="info"
+                            count="{{ $articleCount }}"
                             url="{{route('articles.index')}}"
                             icon="ion ion-ios-folder">
 						</card-info-component>
@@ -29,6 +31,7 @@
                         <card-info-component
                             title="Acessos"
                             color="success"
+                            count="10"
                             url="/home"
                             icon="ion ion-pie-graph">
 						</card-info-component>

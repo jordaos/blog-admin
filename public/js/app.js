@@ -1780,7 +1780,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["title", "color", "url", "icon"],
+  props: ["title", "color", "url", "icon", "count"],
   computed: {
     defineColor: function defineColor() {
       var bg = "bg-" + (this.color || "light");
@@ -2048,7 +2048,7 @@ __webpack_require__.r(__webpack_exports__);
       return this.url + "/" + id;
     }
   },
-  mounted: function mounted() {
+  beforeMount: function beforeMount() {
     this.listItems = this.items;
   }
 });
@@ -63698,7 +63698,7 @@ var render = function() {
     { staticClass: "card card-default", class: _vm.defineColor },
     [
       _c("div", { staticClass: "card-body" }, [
-        _c("h2", { staticClass: "count" }, [_vm._v("10")]),
+        _c("h2", { staticClass: "count" }, [_vm._v(_vm._s(_vm.count))]),
         _vm._v(" "),
         _c("h5", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.title))]),
         _vm._v(" "),

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Article;
+
 class HomeController extends Controller
 {
     /**
@@ -29,9 +31,12 @@ class HomeController extends Controller
                 "active" => true
             ]
         ]);
+
+        $articleCount = Article::count();
+
         return view(
             'home',
-            compact('breadcrumbList')
+            compact('breadcrumbList', 'articleCount')
         );
     }
 }

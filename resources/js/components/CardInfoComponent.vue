@@ -1,7 +1,7 @@
 <template>
 <div class="card card-default" v-bind:class="defineColor">
     <div class="card-body">
-        <h2 class="count">10</h2>
+        <h2 class="count">{{ count }}</h2>
         <h5 class="card-title">{{title}}</h5>
         <div class="icon">
             <i v-bind:class="icon"></i>
@@ -16,7 +16,7 @@
 
 <script>
 export default {
-    props: ["title", "color", "url", "icon"],
+    props: ["title", "color", "url", "icon", "count"],
     computed: {
         defineColor: function () {
             let bg = "bg-" + (this.color || "light");
