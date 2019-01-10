@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Article;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -33,10 +34,11 @@ class HomeController extends Controller
         ]);
 
         $articleCount = Article::count();
+        $userCount = User::count();
 
         return view(
             'home',
-            compact('breadcrumbList', 'articleCount')
+            compact('breadcrumbList', 'articleCount', 'userCount')
         );
     }
 }

@@ -13,8 +13,8 @@
                         <card-info-component 
                             title="Usuários"
                             color="danger"
-                            count="10"
-                            url="/home"
+                            count="{{ $userCount }}"
+                            url="{{ route('users.index') }}"
                             icon="ion ion-person-stalker">
 						</card-info-component>
 					</div>
