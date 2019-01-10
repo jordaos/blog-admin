@@ -75,7 +75,7 @@ class ArticlesController extends Controller
         $validation = \Validator::make($data, [
             'title' => 'required',
             'description' => 'required',
-            'publish' => 'required',
+            'publish' => 'required|date',
         ]);
 
         if ($validation->fails()) {
@@ -142,7 +142,7 @@ class ArticlesController extends Controller
         $validation = \Validator::make($data, [
             'title' => 'required',
             'description' => 'required',
-            'publish' => 'required',
+            'publish' => 'required|date',
         ]);
 
         if ($validation->fails()) {

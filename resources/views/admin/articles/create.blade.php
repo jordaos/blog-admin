@@ -22,7 +22,11 @@
 					</div>
 					<div class="form-group">
 						<label for="dateInput">Data</label>
+						@if (empty($article))
 						<datetime name="publish" type="datetime" input-id="dateInput" input-class="form-control" format="yyyy-MM-dd HH:mm" min-datetime="{{ date('Y-m-d H:i:s') }}"></datetime>
+						@else
+						<input type="datetime" class="form-control" name="publish" id="dateInput" value="{{ old('publish', $article->publish) }}">
+						@endif
 						@if ($errors->has('publish'))
 						<label for="dateInput" class="form-text small text-danger">{{$errors->first('publish')}}</label>
 						@endif

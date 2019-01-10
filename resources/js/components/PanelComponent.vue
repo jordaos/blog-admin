@@ -10,7 +10,7 @@
 
 <script>
 export default {
-    props: ["title", "color", "url"],
+    props: ["title", "color"],
     computed: {
         defineBgAndColor: function () {
             let bg = "bg-" + (this.color || "light");
