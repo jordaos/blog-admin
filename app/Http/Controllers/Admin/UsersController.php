@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 use App\User;
 
@@ -143,11 +144,20 @@ class UsersController extends Controller
     {
         $data = $request->all();
 
-        $validation = Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6'],
-        ]);
+        if (isset($data['password']) && $data['password'] != "") {
+            $validation = Validator::make($data, [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($id)],
+                'password' => ['required', 'string', 'min:6'],
+            ]);
+            $data['password'] = Hash::make($data['password']);
+        } else {
+            $validation = Validator::make($data, [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($id)],
+            ]);
+            unset($data['password']);
+        }
 
         if ($validation->fails()) {
             return redirect()->back()->withErrors($validation)->withInput();
