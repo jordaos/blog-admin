@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
+use App\Role;
+
 class RoleTableSeeder extends Seeder
 {
     /**
@@ -11,6 +13,9 @@ class RoleTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $role_admin = new Role();
+        $role_admin->name = 'Administradores';
+        $role_admin->description = 'Faz tudo no sistema';
+        $role_admin->save();
     }
 }
