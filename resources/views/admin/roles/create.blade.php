@@ -15,7 +15,7 @@
 					</div>
 					<div class="form-group">
 						<label for="descriptionTextarea">Descrição</label>
-						<textarea name="description" class="form-control" id="descriptionTextarea" rows="3" placeholder="Descrição...">{{ old('description', (!empty($role) ? $article->description : '')) }}</textarea> 
+						<textarea name="description" class="form-control" id="descriptionTextarea" rows="3" placeholder="Descrição...">{{ old('description', (!empty($role) ? $role->description : '')) }}</textarea> 
 						@if ($errors->has('description'))
 						<label for="descriptionTextarea" class="form-text small text-danger">{{$errors->first('description')}}</label>
 						@endif
