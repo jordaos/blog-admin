@@ -29,10 +29,10 @@
 					</div>
 					<div class="col-md-4">
                         <card-info-component
-                            title="Acessos"
+                            title="Funções"
                             color="success"
                             count="10"
-                            url="/home"
+                            url="{{ route('roles.index') }}"
                             icon="ion ion-pie-graph">
 						</card-info-component>
 					</div>
