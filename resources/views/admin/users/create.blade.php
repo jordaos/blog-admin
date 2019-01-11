@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="col-md-10 mx-auto">
 			<b-breadcrumb :items="{{$breadcrumbList}}"></b-breadcrumb>
-			<panel-component title="Novo artigo" color="dark">
+			<panel-component title="Novo Usuário" color="dark">
 				<form-component method="{{empty($user) ? 'POST' : 'PUT'}}" action="{{empty($user) ? route('users.store') : route('users.update', $user->id) }}" token="{{ csrf_token() }}">
 					<div class="form-group">
 						<label for="nameInput">Nome</label>
