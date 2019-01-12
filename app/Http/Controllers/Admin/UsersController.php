@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
 use App\User;
+use App\Role;
 
 class UsersController extends Controller
 {
@@ -59,9 +60,12 @@ class UsersController extends Controller
                 "active" => true
             ]
         ]);
+
+        $roleList = json_encode(Role::all());
+
         return view(
             'admin.users.create',
-            compact('breadcrumbList')
+            compact('breadcrumbList', 'roleList')
         );
     }
 

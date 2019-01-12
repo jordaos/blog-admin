@@ -29,6 +29,15 @@
 						<label for="passwordInput" class="form-text small text-danger">{{$errors->first('password')}}</label>
 						@endif
 					</div>
+
+					<div class="form-group">
+						<label for="roleSelect">Função</label>
+						<select-component
+							proptext="name"
+							propvalue="id"
+							v-bind:items="{{ $roleList }}"
+							></select-component>
+					</div>
 					
 					<button type="submit" class="btn btn-primary btn-block">Enviar</button>
 				</form-component>
