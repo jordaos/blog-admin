@@ -1,5 +1,5 @@
 <template>
-<select class="form-control">
+<select class="form-control" v-bind:name="name" v-bind:id="id">
     <option value="">Selecione</option>
     <option v-for="(item, key) in items" :key="key" v-bind:value="getValue(item)">{{ getText(item) }}</option>
 </select>
@@ -7,7 +7,7 @@
 
 <script>
 export default {
-    props: ["proptext", "propvalue", "items"],
+    props: ["proptext", "propvalue", "name", "id", "items"],
     methods: {
         getText(item) {
             for(let prop in item)

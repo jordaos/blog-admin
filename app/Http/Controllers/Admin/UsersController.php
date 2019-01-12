@@ -80,6 +80,7 @@ class UsersController extends Controller
         $data = $request->all();
 
         $validation = Validator::make($data, [
+            'role' => ['required', 'integer'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6'],
@@ -90,8 +91,11 @@ class UsersController extends Controller
         }
 
         $data['password'] = Hash::make($data['password']);
+
+        $role = Role::find($data['role']);
         
-        User::create($data);
+        $user = User::create($data);
+        $user->roles()->attach($role);
 
         return redirect()->route('users.index');
     }
@@ -131,9 +135,12 @@ class UsersController extends Controller
                 "active" => true
             ]
         ]);
+
+        $roleList = json_encode(Role::all());
+
         return view(
             'admin.users.create',
-            compact('breadcrumbList', 'user')
+            compact('breadcrumbList', 'user', 'roleList')
         );
     }
 

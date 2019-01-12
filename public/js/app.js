@@ -1902,7 +1902,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["proptext", "propvalue", "items"],
+  props: ["proptext", "propvalue", "name", "id", "items"],
   methods: {
     getText: function getText(item) {
       for (var prop in item) {
@@ -63890,7 +63890,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "select",
-    { staticClass: "form-control" },
+    { staticClass: "form-control", attrs: { name: _vm.name, id: _vm.id } },
     [
       _c("option", { attrs: { value: "" } }, [_vm._v("Selecione")]),
       _vm._v(" "),

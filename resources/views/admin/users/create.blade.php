@@ -33,10 +33,15 @@
 					<div class="form-group">
 						<label for="roleSelect">Função</label>
 						<select-component
+							name="role"
+							id="roleSelect"
 							proptext="name"
 							propvalue="id"
 							v-bind:items="{{ $roleList }}"
 							></select-component>
+						@if ($errors->has('role'))
+						<label for="roleSelect" class="form-text small text-danger">{{$errors->first('role')}}</label>
+						@endif
 					</div>
 					
 					<button type="submit" class="btn btn-primary btn-block">Enviar</button>
