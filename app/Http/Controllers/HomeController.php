@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Article;
 use App\User;
+use App\Role;
 
 class HomeController extends Controller
 {
@@ -35,10 +36,11 @@ class HomeController extends Controller
 
         $articleCount = Article::count();
         $userCount = User::count();
+        $roleCount = Role::count();
 
         return view(
             'home',
-            compact('breadcrumbList', 'articleCount', 'userCount')
+            compact('breadcrumbList', 'articleCount', 'userCount', 'roleCount')
         );
     }
 }

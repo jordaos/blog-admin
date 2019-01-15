@@ -31,7 +31,7 @@
                         <card-info-component
                             title="Funções"
                             color="success"
-                            count="10"
+                            count="{{ $roleCount }}"
                             url="{{ route('roles.index') }}"
                             icon="ion ion-pie-graph">
 						</card-info-component>
