@@ -14,6 +14,11 @@ php artisan make:controller Admin/ArticlesController --resource
 php artisan make:seeder UserTableSeeder
 ```
 
+- Criar migrate em uma tabela específica
+```sh
+php artisan make:migration add_user_id_table_articles --table=articles
+```
+
 - Fazer migrate e persistir os Seeders
 ```sh
 php artisan migrate:fresh --seed

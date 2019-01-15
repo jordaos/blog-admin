@@ -12,4 +12,8 @@ class Article extends Model
     protected $fillable = ['title', 'description', 'publish'];
 
     protected $dates = ['deleted_at'];
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }
