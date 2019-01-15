@@ -29,7 +29,6 @@
 						<label for="passwordInput" class="form-text small text-danger">{{$errors->first('password')}}</label>
 						@endif
 					</div>
-
 					<div class="form-group">
 						<label for="roleSelect">Função</label>
 						<select-component
@@ -37,6 +36,7 @@
 							id="roleSelect"
 							proptext="name"
 							propvalue="id"
+							v-bind:selected="{{ !empty($actualRoles) ? $actualRoles : '[]' }}"
 							v-bind:items="{{ $roleList }}"
 							></select-component>
 						@if ($errors->has('role'))

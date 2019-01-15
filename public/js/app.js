@@ -1902,7 +1902,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["proptext", "propvalue", "name", "id", "items"],
+  props: ["proptext", "propvalue", "name", "id", "items", "selected"],
   methods: {
     getText: function getText(item) {
       for (var prop in item) {
@@ -1917,6 +1917,9 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return '';
+    },
+    isSelectedItem: function isSelectedItem(item) {
+      return this.selected[0] != undefined && item.id == this.selected[0].id;
     }
   }
 });
@@ -63897,7 +63900,13 @@ var render = function() {
       _vm._l(_vm.items, function(item, key) {
         return _c(
           "option",
-          { key: key, domProps: { value: _vm.getValue(item) } },
+          {
+            key: key,
+            domProps: {
+              value: _vm.getValue(item),
+              selected: _vm.isSelectedItem(item)
+            }
+          },
           [_vm._v(_vm._s(_vm.getText(item)))]
         )
       })

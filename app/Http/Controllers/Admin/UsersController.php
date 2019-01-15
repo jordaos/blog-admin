@@ -137,10 +137,11 @@ class UsersController extends Controller
         ]);
 
         $roleList = json_encode(Role::all());
+        $actualRoles = json_encode($user->roles);
 
         return view(
             'admin.users.create',
-            compact('breadcrumbList', 'user', 'roleList')
+            compact('breadcrumbList', 'user', 'roleList', 'actualRoles')
         );
     }
 
