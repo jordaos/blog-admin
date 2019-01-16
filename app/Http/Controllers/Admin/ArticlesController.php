@@ -28,7 +28,7 @@ class ArticlesController extends Controller
             ]
         ]);
 
-        $articleList = json_encode(Article::select('id', 'title', 'description', 'user_id', 'publish')->get());
+        $articleList = json_encode(Article::getAll());
 
         return view(
             'admin.articles.index',
